@@ -19,6 +19,16 @@ export default function App() {
           options={{
             title: "홈",
             // 헤더 커스터마이징하는 첫 번째 방법
+
+            headerStyle: {
+              backgroundColor: `#29b6fb`,
+            },
+            headerTintColor: `#ffffff`,
+            headerTitleStyle: {
+              fontWeight: "bold",
+              fontSize: 20,
+            },
+            // 헤더 스타일 커스터마이징
           }}
         />
         {/* Stack.Screen 컴포넌트를 사용해 각 화면 설정 가능 */}
