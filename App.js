@@ -1,10 +1,11 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "./screens/HomeScreen";
 import DetailScreen from "./screens/DetailScreen";
+import HeaderlessScreen from "./screens/HeaderlessScreen";
 
 const Stack = createStackNavigator();
 
@@ -35,9 +36,31 @@ export default function App() {
         <Stack.Screen
           name="Detail"
           component={DetailScreen}
-          options={({ route }) => ({
-            title: `상세정보 = ${route.params.id}`,
-          })}
+          options={{
+            headerLeft: ({ onPress }) => (
+              <TouchableOpacity onPress={onPress}>
+                <Text>Left</Text>
+              </TouchableOpacity>
+            ),
+            headerTitle: ({ children }) => (
+              <View>
+                <Text>{children}</Text>
+                {/* children이라는 props를 받아오고 있음, 화면의 타이틀을 가리킴 */}
+              </View>
+            ),
+            headerRight: () => (
+              <View>
+                <Text>Right</Text>
+              </View>
+            ),
+          }}
+        />
+        <Stack.Screen
+          name="Headerless"
+          component={HeaderlessScreen}
+          options={{
+            headerShown: false,
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
